@@ -7,14 +7,14 @@ Vagrant::Config.run do |config|
   config.ssh.username = "ubuntu"
   config.ssh.private_key_path = "/Users/weldyss/.ssh/id_rsa"
 
-  config.vm.define :scoola do |local_config|
-    #local_config.vm.network :hostonly, "10.1.2.10"
-    local_config.vm.network :bridged, :adapter => 3
+  config.vm.define :scoola do |c|
+    c.vm.network :bridged
+    c.vm.forward_port 22, 2222
   end
 
-  config.vm.define :nwsoft do |local_config|
-    #local_config.vm.network :hostonly, "10.1.2.11"
-    local_config.vm.network :bridged, :adapter => 4
-    local_config.vm.forward_port 80, 8080
+  config.vm.define :nwsoft do |c|
+    c.vm.network :bridged
+    c.vm.forward_port 22, 2223
+    c.vm.forward_port 80, 8081
   end
 end
