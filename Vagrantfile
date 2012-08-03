@@ -7,6 +7,7 @@ Vagrant::Config.run do |config|
   config.ssh.username = "ubuntu"
   config.ssh.private_key_path = "/Users/weldyss/.ssh/id_rsa"
 
+  # Exemplifying two virtual environments
   config.vm.define :scoola do |local_config|
     local_config.vm.network :hostonly, "10.55.55.10"
     local_config.vm.forward_port 22, 2222
