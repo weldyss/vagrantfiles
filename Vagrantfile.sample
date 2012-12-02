@@ -17,5 +17,10 @@ Vagrant::Config.run do |config|
     local_config.vm.network :hostonly, "10.55.55.11"
     local_config.vm.forward_port 22, 2223
     local_config.vm.forward_port 80, 8081
+    local.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "chef_recipes"
+      chef.add_recipe "redis"
+      chef.add_recipe "mongodb"
+    end
   end
 end
